@@ -165,7 +165,11 @@
 
         if (btn.className=="opn") { //operator button clicks
             dot.disabled=false;
-            if (displayArr[0]=="") { //cannot start with * /operator 
+            if (displayArr.slice(-1)==".") { //cannot have just a dot at the end when operator is clicked
+                dot.disabled=true;
+                return;
+            }
+            else if (displayArr[0]=="") { //cannot start with * /operator 
                 if (btn.textContent=="-" || btn.textContent=="+"){
                     displayArr[displayArr.length-1]+=btn.textContent;
                     disp.value=displayArr[displayArr.length-1];
